@@ -38,13 +38,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Extensions.Design" />
@@ -73,10 +82,11 @@
     <Content Include="Global.asax" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Content Include="Site.css" />
     <Content Include="Site.master" />
+    <Compile Include="Models\IMSDataEntities.cs" />
+    <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Site.master.cs">
       <DependentUpon>Site.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -248,7 +258,6 @@
     <Content Include="DynamicData\FieldTemplates\ManyToMany_Edit.ascx" />
     <Compile Include="DynamicData\FieldTemplates\ManyToMany_Edit.ascx.cs">
       <DependentUpon>ManyToMany_Edit.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DynamicData\FieldTemplates\ManyToMany_Edit.ascx.designer.cs">
       <DependentUpon>ManyToMany_Edit.ascx</DependentUpon>
@@ -363,9 +372,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DynamicData\CustomPages\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

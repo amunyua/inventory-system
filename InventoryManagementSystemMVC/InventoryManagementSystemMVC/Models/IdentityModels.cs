@@ -21,7 +21,7 @@ namespace InventoryManagementSystemMVC.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("IMSDataEntities", throwIfV1Schema: false)
         {
         }
 

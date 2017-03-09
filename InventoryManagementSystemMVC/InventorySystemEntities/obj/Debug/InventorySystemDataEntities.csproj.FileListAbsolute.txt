@@ -1,0 +1,1 @@
+C:\inventory-system\InventoryManagementSystemMVC\InventorySystemEntities\obj\Debug\InventorySystemDataEntities.csprojResolveAssemblyReference.cache
