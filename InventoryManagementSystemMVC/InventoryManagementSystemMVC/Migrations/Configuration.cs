@@ -12,7 +12,7 @@ namespace InventoryManagementSystemMVC.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(InventoryManagementSystemMVC.Models.ApplicationDbContext context)
@@ -32,8 +32,10 @@ namespace InventoryManagementSystemMVC.Migrations
 //            var UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>());
 //            var user = new ApplicationUser { UserName = "Admin", Email = "admin@ims.com" };
 //            var result = UserManager.CreateAsync(user,"123456");
-           
-            
+           context.Users.AddOrUpdate(
+               u => u.Email, new ApplicationUser { UserName = "Alex", Email = "admin@ims.com", PasswordHash = "AOgdgABHGhWOQZofzf2uzk2MA/PG/FK2tZYZi9WYXbgZ8kA0ytx42VHfPdGyIEBbaw==" }
+               );
+//            context.Users.First()
         }
     }
 }

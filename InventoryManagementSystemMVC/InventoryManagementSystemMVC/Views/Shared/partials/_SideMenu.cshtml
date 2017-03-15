@@ -1,4 +1,6 @@
-﻿@*@using SuperAdminFCS.Models;*@
+﻿@using System.Diagnostics
+@using Microsoft.AspNet.Identity
+@*@using SuperAdminFCS.Models;*@
 
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -27,49 +29,60 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
        
-@*         <ul class="sidebar-menu">*@
-@*            $1$<li class="header">MAIN NAVIGATION</li>#1#*@
-@*          @{*@
-@*              using (var db = new FCSDataContext())*@
-@*              {*@
-@*                  var menus = db.Menus;*@
-@*                  foreach (var menu_item in menus.Where(x => x.Parent_id == 0).OrderBy(x=>x.Sequence))*@
-@*                  {*@
-@*                      var currentUrl = Path.GetFileName(Request.Url.AbsolutePath);*@
-@*                        *@
-@*            <li class="treeview">*@
-@*                <a href="#">*@
-@*                    <i class="fa @menu_item.Icon"></i>*@
-@*                    <span>@menu_item.Menu_name </span>*@
-@*                    <span class="pull-right-container">*@
-@*                        <i class="fa fa-angle-left pull-right"></i>*@
-@*                    </span>*@
-@*                </a>*@
-@*              @{*@
+        <ul class="sidebar-menu">
+            
+            @{
+                //first get the user role of the logged in person
+                var userId = User.Identity.GetUserId();
+                
+                
+            }
+            
+            
+            
+            
 @**@
-@**@
-@*                <ul class="treeview-menu">*@
-@*                    @foreach (var items in db.Menus.Where(x => x.Parent_id == menu_item.id).OrderBy(x => x.Sequence))*@
+@*            @{*@
+@*                using (var db = new FCSDataContext())*@
+@*                {*@
+@*                    var menus = db.Menus;*@
+@*                    foreach (var menu_item in menus.Where(x => x.Parent_id == 0).OrderBy(x => x.Sequence))*@
 @*                    {*@
-@*                        string action = (items.Action == "Index") ? items.Controller : items.Action;*@
-@*                        *@
-@*                        //Debug.Write(action +"  "+currentUrl+ "  ");*@
-@*                        *@
-@*                        //keep the menu active*@
-@*                        string active_class = (currentUrl == action) ? "active set-parent-open" : "";*@
-@*                      @#1#Html.ActionLink(items.Menu_name, items.Action as String, items.Controller as String)<i class="fa fa-circle-o"></i> @items.Menu_name</a>#1#*@
-@*                        <li class="@active_class"><a href="@Url.Action(items.Action,items.Controller)"><i class="fa fa-circle-o"></i> @items.Menu_name</a></li>*@
-@*                    }*@
-@*                </ul>*@
-@*            }*@
-@*            *@
+@*                        var currentUrl = Path.GetFileName(Request.Url.AbsolutePath);*@
 @**@
-@*               *@
-@*            </li>*@
-@*                  }*@
-@*              }*@
+@*                        <li class="treeview">*@
+@*                            <a href="#">*@
+@*                                <i class="fa @menu_item.Icon"></i>*@
+@*                                <span>@menu_item.Menu_name </span>*@
+@*                                <span class="pull-right-container">*@
+@*                                    <i class="fa fa-angle-left pull-right"></i>*@
+@*                                </span>*@
+@*                            </a>*@
+@*                            @{*@
+@**@
+@**@
+@*                                <ul class="treeview-menu">*@
+@*                                    @foreach (var items in db.Menus.Where(x => x.Parent_id == menu_item.id).OrderBy(x => x.Sequence))*@
+@*                                    {*@
+@*                                        string action = (items.Action == "Index") ? items.Controller : items.Action;*@
+@**@
+@*                                        //Debug.Write(action +"  "+currentUrl+ "  ");*@
+@**@
+@*                                        //keep the menu active*@
+@*                                        string active_class = (currentUrl == action) ? "active set-parent-open" : "";*@
+@*                      @#1#Html.ActionLink(items.Menu_name, items.Action as String, items.Controller as String)<i class="fa fa-circle-o"></i> @items.Menu_name</a>#1#*@
+@*                                        <li class="@active_class"><a href="@Url.Action(items.Action, items.Controller)"><i class="fa fa-circle-o"></i> @items.Menu_name</a></li>*@
+@*                                    }*@
+@*                                </ul>*@
+@*                            }*@
+@**@
+@**@
+@**@
+@*                        </li>*@
+@*                    }*@
+@*                }*@
 @*            }*@
-@*        </ul>*@
+        </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
