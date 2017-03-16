@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace InventoryDataEntities.Models
 {
-    class Menu
+   public class Menu
     {
         [Key]
         public long Id { get; set; }

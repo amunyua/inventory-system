@@ -112,7 +112,24 @@
     <Compile Include="Migrations\201703141302065_foreign_keys.Designer.cs">
       <DependentUpon>201703141302065_foreign_keys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703150827180_addParentIdToMenuAllocation.cs" />
+    <Compile Include="Migrations\201703150827180_addParentIdToMenuAllocation.Designer.cs">
+      <DependentUpon>201703150827180_addParentIdToMenuAllocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703160718219_removeRequiredAttribute.cs" />
+    <Compile Include="Migrations\201703160718219_removeRequiredAttribute.Designer.cs">
+      <DependentUpon>201703160718219_removeRequiredAttribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703160741157_CrudActions.cs" />
+    <Compile Include="Migrations\201703160741157_CrudActions.Designer.cs">
+      <DependentUpon>201703160741157_CrudActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703160745081_AddCrudActionsColumn.cs" />
+    <Compile Include="Migrations\201703160745081_AddCrudActionsColumn.Designer.cs">
+      <DependentUpon>201703160745081_AddCrudActionsColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CRUDAction.cs" />
     <Compile Include="Models\IMSDataContext.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -149,6 +166,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703141302065_foreign_keys.resx">
       <DependentUpon>201703141302065_foreign_keys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150827180_addParentIdToMenuAllocation.resx">
+      <DependentUpon>201703150827180_addParentIdToMenuAllocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160718219_removeRequiredAttribute.resx">
+      <DependentUpon>201703160718219_removeRequiredAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160741157_CrudActions.resx">
+      <DependentUpon>201703160741157_CrudActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703160745081_AddCrudActionsColumn.resx">
+      <DependentUpon>201703160745081_AddCrudActionsColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

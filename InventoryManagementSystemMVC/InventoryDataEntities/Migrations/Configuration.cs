@@ -19,6 +19,10 @@ namespace InventoryDataEntities.Migrations
 
         protected override void Seed(InventoryDataEntities.Models.IMSDataEntities context)
         {
+            //create crud actions
+            context.CrudActions.AddOrUpdate(a=>a.ActionCode, new CRUDAction{ ActionCode = "ADD", Description = "Can Add an entry"});
+            context.CrudActions.AddOrUpdate(a=>a.ActionCode, new CRUDAction{ ActionCode = "EDIT", Description = "Can Edit an entry"});
+            context.CrudActions.AddOrUpdate(a=>a.ActionCode, new CRUDAction{ ActionCode = "DELETE", Description = "Can Delete an entry"});
             //create the admins user role
             context.Roles.AddOrUpdate(
                 r => r.RoleName, new Models.Roles { RoleName = "SystemAdmin", Description = "Super admin"}
@@ -58,13 +62,53 @@ namespace InventoryDataEntities.Migrations
             };
             context.Menus.AddOrUpdate(m => m.MenuName,analyticalDashboard);
 
-            AssignRole(context, roleId,analyticalDashboard.Id);
+            AssignRole(context, roleId,analyticalDashboard.Id,dashboardId);
+
+            //############################################### User Settings #############################################################
+            //parent menu for system settings
+            var userSettings = new Menu { Status = true, MenuName = "User Settings", Controller = "#", Action = "#", Icon = "fa fa-user text-yellow", Sequence = 8 };
+            context.Menus.AddOrUpdate(
+                m => m.MenuName, userSettings
+                );
+            var userSettingsId = userSettings.Id;
+            //////////////// children menus
+            var roles = new Menu { Status = true, MenuName = "Manage Roles", Controller = "Roles", Action = "Index", Icon = "#", Sequence = 1, ParentMenu = userSettingsId };
+
+            context.Menus.AddOrUpdate(m => m.MenuName, roles);
+
+            AssignRole(context, roleId, roles.Id, userSettingsId);
+
+
+            //############################################### System Settings #############################################################
+            //parent menu for system settings
+            var systemSettings = new Menu { Status = true, MenuName = "System Settings", Controller = "#", Action = "#", Icon = "fa fa-gears text-yellow", Sequence = 9 };
+            context.Menus.AddOrUpdate(
+                m => m.MenuName, systemSettings
+                );
+            var systemSettingsId = systemSettings.Id;
+            //////////////////// children menus for system settings
+            var manageMenu = new Menu { Status = true, MenuName = "Manage Menu", Controller = "Menus", Action = "Index", Icon = "#", Sequence = 1, ParentMenu = systemSettingsId };
+            
+            context.Menus.AddOrUpdate(m => m.MenuName, manageMenu);
+
+            AssignRole(context, roleId, manageMenu.Id, systemSettingsId);
+
         }
 
-        public void AssignRole(InventoryDataEntities.Models.IMSDataEntities context,long roleId, long menuId)
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        public void AssignRole(InventoryDataEntities.Models.IMSDataEntities context,long roleId, long menuId, long parentId)
         {
             context.UserRoleAllocations.AddOrUpdate(
-                x => new { x.RoleId, x.MenuId }, new UserRoleAllocation { MenuId = menuId, RoleId = roleId }
+                x =>  x.MenuId, new UserRoleAllocation { MenuId = menuId, RoleId = roleId, ParentId = parentId}
                 );
         }
     }

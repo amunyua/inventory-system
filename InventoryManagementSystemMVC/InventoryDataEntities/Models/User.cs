@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace InventoryDataEntities.Models
 {
     [Table("AspNetUsers")]
-    class User
+    public class User
     {
        
         // Summary:

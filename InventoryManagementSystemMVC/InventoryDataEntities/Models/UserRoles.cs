@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InventoryDataEntities.Models
 {
-    class UserRoles
+   public class UserRoles
     {
         [Key]
         public long Id { get; set; }

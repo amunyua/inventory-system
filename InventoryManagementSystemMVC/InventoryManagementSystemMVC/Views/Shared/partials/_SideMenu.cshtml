@@ -1,87 +1,86 @@
 ﻿@using System.Diagnostics
+@using System.Web.UI.WebControls
 @using Microsoft.AspNet.Identity
 @*@using SuperAdminFCS.Models;*@
+@using InventoryDataEntities.Models;
 
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        @*<div class="user-panel">
-            <div class="pull-left image">
-                <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>*@
-        <!-- search form -->
-        @*<form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>*@
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-       
         <ul class="sidebar-menu">
             
             @{
                 //first get the user role of the logged in person
-                var userId = User.Identity.GetUserId();
+                var userId = User.Identity.GetUserId<int>();
+                //with the user id we get the userrole
+                var db = new IMSDataEntities();
+                var userRole = db.UserRoles.Where(x => x.UserId ==userId).FirstOrDefault();
+                if (userRole != null)
+                {
+//                    Debug.Write(userRole.RoleId);
+                    //using the role id get all allocated menus for the user role
+                    var allocatedMenus = db.UserRoleAllocations.Where(x => x.RoleId == userRole.RoleId).Select(x=>x.ParentId).Distinct();
+                    if (allocatedMenus.Any())
+                    {
+                        //get the path
+//                        var currentUrl = Path.GetFileName(Request.Url.AbsolutePath);
+//                        Debug.Write(currentUrl);
+                        //if there is any menu allocated to this role, display them all
+                        foreach (var item in allocatedMenus)
+                        {
+                            var parentMenu = db.Menus.Find(item);
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa @parentMenu.Icon"></i>
+                                    <span>@parentMenu.MenuName </span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                @{
+                            var allocateChilItems = db.UserRoleAllocations.Where(x => x.ParentId == item && x.RoleId == userRole.RoleId);
+                            if (allocateChilItems.Any())
+                            {
+                                <ul class="treeview-menu">
+                                   @foreach (var childMenu in allocateChilItems)
+                                    {
+//                                       
+                                    var menuDetails = db.Menus.Find(childMenu.MenuId);
+                                        if (menuDetails != null)
+                                        {
+                                            var currentUrl = Path.GetFileName(Request.Url.AbsolutePath);
+                                            if (currentUrl == "")
+                                            {
+                                                currentUrl = "Dashboard";
+                                            }
+                                            string action = (menuDetails.Action == "Index") ? menuDetails.Controller : menuDetails.Action;
+//                                            string action = menuDetails.Action;
+//                                            Debug.WriteLine(action);
+//                                            Debug.WriteLine(currentUrl);
+//                                            var currentUrl = Path.GetFileName(Request.Url.AbsolutePath);
+                                          
+
+                                            //keep the menu active
+                                            string active_class = (currentUrl == action) ? "active set-parent-open" : "";
+//                                            Debug.WriteLine(active_class);
+                                            
+                                        @*@Html.ActionLink(items.Menu_name, items.Action as String, items.Controller as String)<i class="fa fa-circle-o"></i> @items.Menu_name</a>*@
+                                            <li class="@active_class"><a href="@Url.Action(menuDetails.Action, menuDetails.Controller)"><i class="fa fa-angle-double-right"></i> @menuDetails.MenuName</a></li>
+
+                                        }
+                                    }
+                                </ul>
+                            }
+
+                                }
+                            </li>
                 
-                
+                        }
+                    }
+                 }
+
             }
-            
-            
-            
-            
-@**@
-@*            @{*@
-@*                using (var db = new FCSDataContext())*@
-@*                {*@
-@*                    var menus = db.Menus;*@
-@*                    foreach (var menu_item in menus.Where(x => x.Parent_id == 0).OrderBy(x => x.Sequence))*@
-@*                    {*@
-@*                        var currentUrl = Path.GetFileName(Request.Url.AbsolutePath);*@
-@**@
-@*                        <li class="treeview">*@
-@*                            <a href="#">*@
-@*                                <i class="fa @menu_item.Icon"></i>*@
-@*                                <span>@menu_item.Menu_name </span>*@
-@*                                <span class="pull-right-container">*@
-@*                                    <i class="fa fa-angle-left pull-right"></i>*@
-@*                                </span>*@
-@*                            </a>*@
-@*                            @{*@
-@**@
-@**@
-@*                                <ul class="treeview-menu">*@
-@*                                    @foreach (var items in db.Menus.Where(x => x.Parent_id == menu_item.id).OrderBy(x => x.Sequence))*@
-@*                                    {*@
-@*                                        string action = (items.Action == "Index") ? items.Controller : items.Action;*@
-@**@
-@*                                        //Debug.Write(action +"  "+currentUrl+ "  ");*@
-@**@
-@*                                        //keep the menu active*@
-@*                                        string active_class = (currentUrl == action) ? "active set-parent-open" : "";*@
-@*                      @#1#Html.ActionLink(items.Menu_name, items.Action as String, items.Controller as String)<i class="fa fa-circle-o"></i> @items.Menu_name</a>#1#*@
-@*                                        <li class="@active_class"><a href="@Url.Action(items.Action, items.Controller)"><i class="fa fa-circle-o"></i> @items.Menu_name</a></li>*@
-@*                                    }*@
-@*                                </ul>*@
-@*                            }*@
-@**@
-@**@
-@**@
-@*                        </li>*@
-@*                    }*@
-@*                }*@
-@*            }*@
+
         </ul>
     </section>
     <!-- /.sidebar -->

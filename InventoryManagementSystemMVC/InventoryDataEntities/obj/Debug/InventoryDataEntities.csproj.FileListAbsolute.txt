@@ -32,3 +32,7 @@ C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.editforeignkeys.resources
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.editforeignkeys1.resources
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.foreign_keys.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.addParentIdToMenuAllocation.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.removeRequiredAttribute.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.CrudActions.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.AddCrudActionsColumn.resources

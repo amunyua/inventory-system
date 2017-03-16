@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryDataEntities.Models
 {
-    class Roles
+    public class Roles
     {
         [Key]
         public long RoleId { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryDataEntities.Models
 {
-    class UserRoleAllocation
+    public class UserRoleAllocation
     {
         [Key]
         public long Id { get; set; }
@@ -16,9 +16,11 @@ namespace InventoryDataEntities.Models
         public long RoleId { get; set; }
         [ForeignKey("Menus")]
         public long MenuId { get; set; }
-        [Required]
+        public long? ParentId { get; set; }
+        public string CrudActions { get; set; }
+        
         public virtual Menu Menus { get; set; }
-        [Required]
+        
         public virtual Roles Role_id { get; set; }
     }
 }

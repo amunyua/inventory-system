@@ -1,0 +1,172 @@
+﻿@using System.Activities.Validation
+@using InventoryDataEntities.Models
+@model IEnumerable<InventoryDataEntities.Models.Roles>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DtLayout.cshtml";
+ 
+}
+
+        @section PageTitle{Manage Roles}
+@section BreadCrumbs{
+    <li>User Manager</li>
+    <li class="active">Manage Roles</li>
+    }
+@section Actions{ <li><a href="@Url.Action("Create")" class="btn btn-sm btn-primary">Create New</a></li>}
+@section TableHeader{All User Roles}
+
+  @{Html.RenderPartial("partials/_message");}
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+            <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>Assign Menus</th>
+        <th class="edit-btn">Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+
+@foreach (var item in Model) {
+<tbody>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleId)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <a href="#assign-roles-modal" role-name="@item.RoleName" role-id="@item.RoleId" data-toggle="modal" class="btn btn-success btn-xs assign-role-btn"><i class="fa fa-paper-clip"> </i> Assign Roles</a>
+        </td>
+        <td class="edit-btn">
+             <a href="@Url.Action("Edit", new { id=item.RoleId })" class="btn btn-xs btn-primary"><i class="fa fa-edit"> </i> Edit</a>
+            
+        <td>
+            <a data-toggle="modal" data-target="#delete-modal" action="@Url.Action("Delete", new { id=item.RoleId })" class="btn btn-xs btn-danger delete-btn"><i class="fa fa-recycle"> </i> Delete</a>
+        </td>
+    </tr>
+    </tbody>
+}
+
+</table>
+
+@*modal*@
+<div class="modal fade" id="delete-modal" role="dialog">
+    <form id="delete-modal-form" action="" method="post">
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Delete Role</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this role?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </form>
+</div>
+@*modal for assigning roles*@
+<div class="modal fade" id="assign-roles-modal" role="dialog">
+    @Html.AntiForgeryToken()
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Assign Roles to <strong><span id="role-name"></span></strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel">
+                    <div class="panel-body">
+                        @{
+                            var db = new IMSDataEntities();
+                            var parentMenus = db.Menus.Where(x => x.ParentMenu == null);
+                            if (parentMenus.Any())
+                            {
+                                foreach (var parentMenu in parentMenus)
+                                {
+                                    <ul>
+                                        <li class="parent">
+                                            <label class="parent-menu" value="@parentMenu.Id">@parentMenu.MenuName</label>
+                                            @{
+                                                var childMenus = db.Menus.Where(x => x.ParentMenu == parentMenu.Id);
+                                                if (childMenus.Any())
+                                                {
+                                                    
+                                                    <ul>
+                                                        @foreach (var childMenu in childMenus)
+                                                        {
+                                                            <li class="menu-item-li">
+                                                                <input type="checkbox" class="assigned-unassigned" value="@childMenu.Id" />@childMenu.MenuName
+                                                                @{
+                                                            var Actions = db.CrudActions;
+                                                            if (Actions.Any())
+                                                            {
+                                                                <ul class="permissions-list" style="display: none">
+                                                                    @foreach (var action in Actions)
+                                                                    {
+                                                                        <li>
+                                                                            @{
+                                                                                <input type="checkbox" value="@action.Id" class="individual-permission" /> @action.ActionCode
+
+                                                                            }
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+                                                                }
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            }
+                                        </li>
+                                    </ul>
+                                
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            @*                <div class="modal-footer">*@
+            @*                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>*@
+            @*                    <button type="submit" class="btn btn-danger">Delete</button>*@
+            @*                </div>*@
+            <input type="hidden" id="role-id" />
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/Roles/assign_roles.js")"></script>
+
+}

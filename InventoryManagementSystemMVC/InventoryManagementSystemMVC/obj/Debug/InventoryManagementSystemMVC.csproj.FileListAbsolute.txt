@@ -108,3 +108,5 @@ C:\inventory-system\InventoryManagementSystemMVC\InventoryManagementSystemMVC\bi
 C:\inventory-system\InventoryManagementSystemMVC\InventoryManagementSystemMVC\obj\Debug\InventoryManagementSystemMVC.csprojResolveAssemblyReference.cache
 C:\inventory-system\InventoryManagementSystemMVC\InventoryManagementSystemMVC\obj\Debug\InventoryManagementSystemMVC.dll
 C:\inventory-system\InventoryManagementSystemMVC\InventoryManagementSystemMVC\obj\Debug\InventoryManagementSystemMVC.pdb
+C:\inventory-system\InventoryManagementSystemMVC\InventoryManagementSystemMVC\bin\InventoryDataEntities.dll
+C:\inventory-system\InventoryManagementSystemMVC\InventoryManagementSystemMVC\bin\InventoryDataEntities.pdb
