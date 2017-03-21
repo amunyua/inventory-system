@@ -26,6 +26,9 @@ namespace InventoryDataEntities.Models
         public DbSet<UserRoleAllocation> UserRoleAllocations { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<CRUDAction> CrudActions { get; set; }
+        public DbSet<UsersView> AllUsers { get; set; }
+        public DbSet<UOM> Uom { get; set; }
+        public DbSet<Supplier> Supppliers { get; set; }
 
 
 

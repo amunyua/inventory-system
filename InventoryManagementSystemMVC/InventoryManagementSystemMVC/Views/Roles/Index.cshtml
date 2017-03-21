@@ -1,6 +1,8 @@
 ﻿@using System.Activities.Validation
+@using System.Diagnostics
 @using InventoryDataEntities.Models
 @model IEnumerable<InventoryDataEntities.Models.Roles>
+
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +15,18 @@
     <li>User Manager</li>
     <li class="active">Manage Roles</li>
     }
-@section Actions{ <li><a href="@Url.Action("Create")" class="btn btn-sm btn-primary">Create New</a></li>}
+@section Actions{ 
+    @{
+        if (Flag.Status("ADD"))
+        {
+            <li><a href="@Url.Action("Create")" class="btn btn-sm btn-primary">Create New</a></li>
+        }
+    }
+    }
 @section TableHeader{All User Roles}
 
-  @{Html.RenderPartial("partials/_message");}
+@{Html.RenderPartial("partials/_message");}
+
 <table id="example2" class="table table-bordered table-hover">
     <thead>
             <tr>
@@ -30,8 +40,20 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th>Assign Menus</th>
-        <th class="edit-btn">Edit</th>
-        <th>Delete</th>
+       
+        @{
+            if (Flag.Status("EDIT"))
+            {
+                <th>Edit</th>
+            }
+        }        
+        
+                @{
+                    if (Flag.Status("DELETE"))
+                    {
+                        <th>Delete</th>
+                    }
+                }    
     </tr>
     </thead>
 
@@ -53,12 +75,22 @@
         <td>
             <a href="#assign-roles-modal" role-name="@item.RoleName" role-id="@item.RoleId" data-toggle="modal" class="btn btn-success btn-xs assign-role-btn"><i class="fa fa-paper-clip"> </i> Assign Roles</a>
         </td>
-        <td class="edit-btn">
-             <a href="@Url.Action("Edit", new { id=item.RoleId })" class="btn btn-xs btn-primary"><i class="fa fa-edit"> </i> Edit</a>
-            
-        <td>
-            <a data-toggle="modal" data-target="#delete-modal" action="@Url.Action("Delete", new { id=item.RoleId })" class="btn btn-xs btn-danger delete-btn"><i class="fa fa-recycle"> </i> Delete</a>
-        </td>
+        @{
+            if (Flag.Status("EDIT"))
+            {
+                <td >
+                        <a href="@Url.Action("Edit", new { id=item.RoleId })" class="btn btn-xs btn-primary"><i class="fa fa-edit"> </i> Edit</a > 
+                </td>
+            }
+        }
+        @{
+    if (Flag.Status("DELETE"))
+            {
+                <td>
+                    <a data-toggle="modal" data-target="#delete-modal" action="@Url.Action("Delete", new { id=item.RoleId })" class="btn btn-xs btn-danger delete-btn"><i class="fa fa-recycle"> </i> Delete</a>
+                </td>
+            }
+}
     </tr>
     </tbody>
 }

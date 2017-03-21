@@ -16,9 +16,10 @@ namespace InventoryDataEntities.Models
         public long Id { get; set; }
         [ForeignKey("Roles")]
         public long RoleId { get; set; }
-
+//        [ForeignKey("Users")]
         public long UserId { get; set; }
-        [Required]
+        
         public virtual Roles Roles { get; set; }
+//        public virtual User Users { get; set; }
     }
 }

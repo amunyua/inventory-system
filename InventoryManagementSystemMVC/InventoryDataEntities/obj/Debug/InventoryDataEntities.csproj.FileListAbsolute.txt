@@ -36,3 +36,9 @@ C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.removeRequiredAttribute.resources
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.CrudActions.resources
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.AddCrudActionsColumn.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.editInt.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.ForeinKey.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.dropforeinkey.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.users_view.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.unitofmeasure.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.suppliers.resources

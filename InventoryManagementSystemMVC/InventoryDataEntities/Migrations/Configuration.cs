@@ -35,9 +35,9 @@ namespace InventoryDataEntities.Migrations
             var admin = context.Users.FirstOrDefault();
             if (admin != null)
             {
-                context.UserRoles.AddOrUpdate(
-                    x => x.UserId, new UserRoles { UserId = admin.Id, RoleId = roleId}
-                    );
+//                context.UserRoles.AddOrUpdate(
+//                    x => x.UserId, new UserRoles { UserId = admin.Id, RoleId = roleId}
+//                    );
             }
             
             
@@ -62,10 +62,14 @@ namespace InventoryDataEntities.Migrations
             };
             context.Menus.AddOrUpdate(m => m.MenuName,analyticalDashboard);
 
-            AssignRole(context, roleId,analyticalDashboard.Id,dashboardId);
+            AssignRole(roleId,analyticalDashboard.Id,dashboardId);
 
+           
+            
+            
+            
             //############################################### User Settings #############################################################
-            //parent menu for system settings
+            //parent menu for user settings
             var userSettings = new Menu { Status = true, MenuName = "User Settings", Controller = "#", Action = "#", Icon = "fa fa-user text-yellow", Sequence = 8 };
             context.Menus.AddOrUpdate(
                 m => m.MenuName, userSettings
@@ -76,7 +80,11 @@ namespace InventoryDataEntities.Migrations
 
             context.Menus.AddOrUpdate(m => m.MenuName, roles);
 
-            AssignRole(context, roleId, roles.Id, userSettingsId);
+            AssignRole(roleId, roles.Id, userSettingsId);
+            //manage users
+            var manageUsers = new Menu { Status = true, MenuName = "Manage Users", Controller = "Manage", Action = "Index", Icon = "#", Sequence = 2, ParentMenu = userSettingsId };
+            context.Menus.AddOrUpdate(m => m.MenuName, manageUsers);
+            AssignRole( roleId, manageUsers.Id, userSettingsId);
 
 
             //############################################### System Settings #############################################################
@@ -91,25 +99,69 @@ namespace InventoryDataEntities.Migrations
             
             context.Menus.AddOrUpdate(m => m.MenuName, manageMenu);
 
-            AssignRole(context, roleId, manageMenu.Id, systemSettingsId);
+            AssignRole(roleId, manageMenu.Id, systemSettingsId);
+
+
+            //##################### Inventory Module###############
+            //parent
+            var inventoryParent = ParentMenu(context,"Inventory Module", 2);
+
+            //children
+            ChildMenu(context,"Manage Uom","UOM","Index",1,inventoryParent,roleId);
+            //manage suppliers
+            ChildMenu(context, "Manage Suppliers", "Suppliers", "Index", 2, inventoryParent, roleId);
+
+
 
         }
 
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        public void AssignRole(InventoryDataEntities.Models.IMSDataEntities context,long roleId, long menuId, long parentId)
+
+
+        public long ParentMenu(InventoryDataEntities.Models.IMSDataEntities context,string menuName, int sequence)
         {
-            context.UserRoleAllocations.AddOrUpdate(
-                x =>  x.MenuId, new UserRoleAllocation { MenuId = menuId, RoleId = roleId, ParentId = parentId}
+//            var context = new IMSDataEntities();
+            var parentMenu = new Menu { Status = true, MenuName = menuName, Controller = "#", Action = "#", Icon = "fa fa-gears text-yellow", Sequence = sequence };
+            context.Menus.AddOrUpdate(
+                m => m.MenuName, parentMenu
                 );
+            return parentMenu.Id;
+        }
+
+        public void ChildMenu(InventoryDataEntities.Models.IMSDataEntities context, string childMenuName, string controller, string action, int sequence, long parentId, long roleId)
+        {
+//            var context = new IMSDataEntities();
+            var childMenu = new Menu { Status = true, MenuName = childMenuName, Controller = controller, Action = action, Icon = "#", Sequence = sequence, ParentMenu = parentId };
+
+            context.Menus.AddOrUpdate(m => m.MenuName, childMenu);
+
+            AssignRole(roleId, childMenu.Id, parentId);
+        }
+        
+        
+        
+        
+        
+        
+        
+        public void AssignRole(long roleId, long menuId, long parentId)
+        {
+            var context = new IMSDataEntities();
+
+            var count = context.UserRoleAllocations.Where(x => x.RoleId == roleId && x.MenuId == menuId);
+            if (!count.Any())
+            {
+                context.UserRoleAllocations.Add(
+                    
+                    new UserRoleAllocation
+                    {
+                        MenuId = menuId,
+                        RoleId = roleId,
+                        ParentId = parentId,
+                        CrudActions = "{1,2,3}"
+                    }
+                );
+                context.SaveChanges();
+            }
         }
     }
 }

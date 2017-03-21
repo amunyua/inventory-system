@@ -128,12 +128,39 @@
     <Compile Include="Migrations\201703160745081_AddCrudActionsColumn.Designer.cs">
       <DependentUpon>201703160745081_AddCrudActionsColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703171101186_editInt.cs" />
+    <Compile Include="Migrations\201703171101186_editInt.Designer.cs">
+      <DependentUpon>201703171101186_editInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703171113407_ForeinKey.cs" />
+    <Compile Include="Migrations\201703171113407_ForeinKey.Designer.cs">
+      <DependentUpon>201703171113407_ForeinKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703171223358_dropforeinkey.cs" />
+    <Compile Include="Migrations\201703171223358_dropforeinkey.Designer.cs">
+      <DependentUpon>201703171223358_dropforeinkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703200950273_users_view.cs" />
+    <Compile Include="Migrations\201703200950273_users_view.Designer.cs">
+      <DependentUpon>201703200950273_users_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703210634412_unitofmeasure.cs" />
+    <Compile Include="Migrations\201703210634412_unitofmeasure.Designer.cs">
+      <DependentUpon>201703210634412_unitofmeasure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703210823305_suppliers.cs" />
+    <Compile Include="Migrations\201703210823305_suppliers.Designer.cs">
+      <DependentUpon>201703210823305_suppliers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CRUDAction.cs" />
     <Compile Include="Models\IMSDataContext.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\UOM.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Models\UserRoleAllocation.cs" />
     <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,6 +205,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703160745081_AddCrudActionsColumn.resx">
       <DependentUpon>201703160745081_AddCrudActionsColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171101186_editInt.resx">
+      <DependentUpon>201703171101186_editInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171113407_ForeinKey.resx">
+      <DependentUpon>201703171113407_ForeinKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171223358_dropforeinkey.resx">
+      <DependentUpon>201703171223358_dropforeinkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703200950273_users_view.resx">
+      <DependentUpon>201703200950273_users_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703210634412_unitofmeasure.resx">
+      <DependentUpon>201703210634412_unitofmeasure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703210823305_suppliers.resx">
+      <DependentUpon>201703210823305_suppliers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

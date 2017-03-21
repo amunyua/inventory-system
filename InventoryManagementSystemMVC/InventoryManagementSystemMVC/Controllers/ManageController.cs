@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using InventoryDataEntities.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -25,7 +28,7 @@ namespace InventoryManagementSystemMVC.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
+        private IMSDataEntities db = new IMSDataEntities();
         public ApplicationSignInManager SignInManager
         {
             get
@@ -50,9 +53,22 @@ namespace InventoryManagementSystemMVC.Controllers
             }
         }
 
-        //
+        //all users
+        public ActionResult Index()
+        {
+           
+            return View(db.AllUsers.ToList());
+        }
+
+
+
+
+
+
+
+
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public async Task<ActionResult> OldIndex(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -74,6 +90,52 @@ namespace InventoryManagementSystemMVC.Controllers
             };
             return View(model);
         }
+
+        //
+        // GET: /Manager/Register
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        //        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.FullNames, Email = model.Email, PhoneNumber = model.PhoneNumber.ToString() };
+                var result = await UserManager.CreateAsync(user, "123456");
+                Debug.WriteLine(model.UserRole);
+                if (result.Succeeded)
+                {
+                    //                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    //if the account has been created assign the user to the role assigned
+                    var userRole = db.UserRoles.Add(new UserRoles() { RoleId = model.UserRole, UserId = user.Id });
+
+                    Debug.WriteLine("saving");
+                    db.SaveChanges();
+
+
+
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
 
         //
         // POST: /Manage/RemoveLogin
