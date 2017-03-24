@@ -152,10 +152,43 @@
     <Compile Include="Migrations\201703210823305_suppliers.Designer.cs">
       <DependentUpon>201703210823305_suppliers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703211040011_productcategories.cs" />
+    <Compile Include="Migrations\201703211040011_productcategories.Designer.cs">
+      <DependentUpon>201703211040011_productcategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703211201531_Products.cs" />
+    <Compile Include="Migrations\201703211201531_Products.Designer.cs">
+      <DependentUpon>201703211201531_Products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703211427429_WarehouseTypes.cs" />
+    <Compile Include="Migrations\201703211427429_WarehouseTypes.Designer.cs">
+      <DependentUpon>201703211427429_WarehouseTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703220914046_warehouses.cs" />
+    <Compile Include="Migrations\201703220914046_warehouses.Designer.cs">
+      <DependentUpon>201703220914046_warehouses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703221317550_warehouseProducts.cs" />
+    <Compile Include="Migrations\201703221317550_warehouseProducts.Designer.cs">
+      <DependentUpon>201703221317550_warehouseProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703240911487_supplierProducts.cs" />
+    <Compile Include="Migrations\201703240911487_supplierProducts.Designer.cs">
+      <DependentUpon>201703240911487_supplierProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703240953262_supplierDriver.cs" />
+    <Compile Include="Migrations\201703240953262_supplierDriver.Designer.cs">
+      <DependentUpon>201703240953262_supplierDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703241124236_SupplierVehicles.cs" />
+    <Compile Include="Migrations\201703241124236_SupplierVehicles.Designer.cs">
+      <DependentUpon>201703241124236_SupplierVehicles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CRUDAction.cs" />
     <Compile Include="Models\IMSDataContext.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\UOM.cs" />
@@ -163,6 +196,7 @@
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Models\UserRoleAllocation.cs" />
     <Compile Include="Models\UserRoles.cs" />
+    <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +257,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703210823305_suppliers.resx">
       <DependentUpon>201703210823305_suppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703211040011_productcategories.resx">
+      <DependentUpon>201703211040011_productcategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703211201531_Products.resx">
+      <DependentUpon>201703211201531_Products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703211427429_WarehouseTypes.resx">
+      <DependentUpon>201703211427429_WarehouseTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703220914046_warehouses.resx">
+      <DependentUpon>201703220914046_warehouses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703221317550_warehouseProducts.resx">
+      <DependentUpon>201703221317550_warehouseProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703240911487_supplierProducts.resx">
+      <DependentUpon>201703240911487_supplierProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703240953262_supplierDriver.resx">
+      <DependentUpon>201703240953262_supplierDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241124236_SupplierVehicles.resx">
+      <DependentUpon>201703241124236_SupplierVehicles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

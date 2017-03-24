@@ -10,6 +10,7 @@ using InventoryDataEntities.Models;
 
 namespace InventoryManagementSystemMVC.Controllers
 {
+    [Authorize]
     public class UOMController : Controller
     {
         private IMSDataEntities db = new IMSDataEntities();

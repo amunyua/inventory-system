@@ -116,4 +116,17 @@ namespace InventoryManagementSystemMVC
             return status;
         }
     }
+
+    public static class Validation
+    {
+        public static bool Status;
+        public static bool CheckExisting(IMSDataEntities db,string model)
+        {
+            Status = false;
+            
+            
+
+            return Status;
+        }
+    }
 }

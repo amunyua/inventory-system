@@ -104,14 +104,25 @@ namespace InventoryDataEntities.Migrations
 
             //##################### Inventory Module###############
             //parent
-            var inventoryParent = ParentMenu(context,"Inventory Module", 2);
+            var suppliersParent = ParentMenu(context,"Suppliers", 2);
 
-            //children
-            ChildMenu(context,"Manage Uom","UOM","Index",1,inventoryParent,roleId);
             //manage suppliers
-            ChildMenu(context, "Manage Suppliers", "Suppliers", "Index", 2, inventoryParent, roleId);
+            ChildMenu(context, "Manage Suppliers", "Suppliers", "Index", 2, suppliersParent, roleId);
 
+            //################## Proucts module
 
+            var productsParent = ParentMenu(context, "Products", 3);
+            //children
+            ChildMenu(context, "Manage Uom", "UOM", "Index", 2, productsParent, roleId);
+            //manage products categories
+            ChildMenu(context, "Manage Product Categories", "ProductCategories", "Index", 1, productsParent, roleId);
+            ChildMenu(context, "Manage Products", "Products", "Index", 1, productsParent, roleId);
+
+            //################## Warehouses
+            var warehouseParent = ParentMenu(context, "Warehouses", 4);
+            //warehouse types
+            ChildMenu(context, "Manage Warehouse Types", "WarehouseTypes", "Index", 1, warehouseParent, roleId);
+            ChildMenu(context, "Manage Warehouses", "Warehouses", "Index", 2, warehouseParent, roleId);
 
         }
 

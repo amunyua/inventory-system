@@ -29,6 +29,14 @@ namespace InventoryDataEntities.Models
         public DbSet<UsersView> AllUsers { get; set; }
         public DbSet<UOM> Uom { get; set; }
         public DbSet<Supplier> Supppliers { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<WarehouseType> WarehouseTypes { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<WarehouseProduct> WarehouseProducts { get; set; }
+        public DbSet<SupplierProduct> SupplierProducts { get; set; }
+        public DbSet<SupplierDriver> Drivers { get; set; }
+        public DbSet<SupplierVehicle> Vehicles { get; set; }
 
 
 

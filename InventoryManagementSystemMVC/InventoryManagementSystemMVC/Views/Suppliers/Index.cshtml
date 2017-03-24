@@ -18,56 +18,41 @@
                      }       
                     
                       }} 
-@section TableHeader{All System Menus}
+@section TableHeader{All Suppliers}
 
   @{Html.RenderPartial("partials/_message");}
 <table id="example2" class="table table-bordered table-hover">
     <thead>
-            <tr>
+    <tr>
+        
         <th>
             @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Contact1)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PinNumber)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.ContactPersonName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreditLimit)
-        </th>
+        <th>Manage Drivers</th>
+        <th>Manage Vehicles</th>
+        <th>Manage Products</th>
         @{
             if (Flag.Status("EDIT"))
             {
                 <th>Edit</th>
             }
 
-             if (Flag.Status("DELETE"))
+            if (Flag.Status("DELETE"))
             {
                 <th>Delete</th>
             }
-        } 
+        }
     </tr>
     </thead>
 
@@ -83,40 +68,23 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.PostalAddress)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.PostalCode)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-
+      
         <td>
             @Html.DisplayFor(modelItem => item.Contact1)
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.Contact2)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.PinNumber)
-        </td>
-
-        <td>
             @Html.DisplayFor(modelItem => item.ContactPersonName)
         </td>
-
         <td>
-            @Html.DisplayFor(modelItem => item.CreditLimit)
+            <a href="@Url.Action("Drivers", new { id = item.Id })" class="btn btn-xs btn-success"><i class="fa fa-user"> </i> Manage Drivers</a>
+        </td>
+       <td>
+            <a href="@Url.Action("Vehicles", new { id = item.Id })" class="btn btn-xs btn-success"><i class="fa fa-user"> </i> Manage Vehicles</a>
+        </td>
+       
+        <td>
+            <a href="@Url.Action("SupplierProducts", new { id = item.Id })" class="btn btn-xs btn-success"><i class="fa fa-gears"> </i> Manage Products</a>
         </td>
         @{
             if (Flag.Status("EDIT"))
