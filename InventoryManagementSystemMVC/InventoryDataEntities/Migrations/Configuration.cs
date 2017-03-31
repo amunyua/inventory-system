@@ -100,6 +100,8 @@ namespace InventoryDataEntities.Migrations
             context.Menus.AddOrUpdate(m => m.MenuName, manageMenu);
 
             AssignRole(roleId, manageMenu.Id, systemSettingsId);
+            //            ChildMenu(context, "General Settings", "GeneralSettings", "Index", 2, systemSettingsId, roleId);
+
 
 
             //##################### Inventory Module###############
@@ -123,6 +125,13 @@ namespace InventoryDataEntities.Migrations
             //warehouse types
             ChildMenu(context, "Manage Warehouse Types", "WarehouseTypes", "Index", 1, warehouseParent, roleId);
             ChildMenu(context, "Manage Warehouses", "Warehouses", "Index", 2, warehouseParent, roleId);
+
+            //parent menu for sock management
+            var stockParent = ParentMenu(context, "Stock Management", 5);
+            ChildMenu(context, "Manage Stock", "Stock", "Index", 1, stockParent, roleId);
+            ChildMenu(context, "Stock Transaction", "Stock", "Create", 2, stockParent, roleId);
+            ChildMenu(context, "Transactions", "Stock", "Transactions", 3, stockParent, roleId);
+
 
         }
 

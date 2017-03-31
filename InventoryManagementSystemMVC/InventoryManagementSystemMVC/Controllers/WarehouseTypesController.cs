@@ -39,10 +39,10 @@ namespace InventoryManagementSystemMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-//                db.WarehouseTypes.Add(warehouseType);
                 warehouseType.CreatedAt = DateTime.Now;
-                db.WarehouseTypes.AddOrUpdate(x=>x.Type, warehouseType);
-//                db.SaveChanges();
+                db.WarehouseTypes.Add(warehouseType);
+//                db.WarehouseTypes.AddOrUpdate(x=>x.Type, warehouseType);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -105,6 +105,8 @@ namespace InventoryManagementSystemMVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {

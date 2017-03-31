@@ -120,11 +120,10 @@ namespace InventoryManagementSystemMVC
     public static class Validation
     {
         public static bool Status;
-        public static bool CheckExisting(IMSDataEntities db,string model)
+        public static bool CheckExisting(IMSDataEntities model,string column,string value)
         {
             Status = false;
-            
-            
+
 
             return Status;
         }

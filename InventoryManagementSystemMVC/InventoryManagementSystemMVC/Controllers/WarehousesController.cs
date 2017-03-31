@@ -137,6 +137,9 @@ namespace InventoryManagementSystemMVC.Controllers
             }
             else
             {
+                warehouseP.AvailableStock = 0.0;
+                warehouseP.CreatedAt = DateTime.Now;
+                warehouseP.UpdatedAt = DateTime.Now;
                 db.WarehouseProducts.Add(warehouseP);
                 db.SaveChanges();
                 Session["success"] = "Item has been added";
@@ -162,6 +165,7 @@ namespace InventoryManagementSystemMVC.Controllers
             var reoderLevel = int.Parse(Request.Form["ReorderLevel"]);
             WarehouseProduct p = db.WarehouseProducts.Find(id);
             p.ReorderLevel = reoderLevel;
+            p.UpdatedAt = DateTime.Now;
             db.SaveChanges();
 
             return Redirect(Request.UrlReferrer.ToString());

@@ -184,8 +184,38 @@
     <Compile Include="Migrations\201703241124236_SupplierVehicles.Designer.cs">
       <DependentUpon>201703241124236_SupplierVehicles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703280958337_AddAvailableStockColumn.cs" />
+    <Compile Include="Migrations\201703280958337_AddAvailableStockColumn.Designer.cs">
+      <DependentUpon>201703280958337_AddAvailableStockColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311152281_Transactions.cs" />
+    <Compile Include="Migrations\201703311152281_Transactions.Designer.cs">
+      <DependentUpon>201703311152281_Transactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311154276_transactionDetails.cs" />
+    <Compile Include="Migrations\201703311154276_transactionDetails.Designer.cs">
+      <DependentUpon>201703311154276_transactionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311156383_transactionDocuments.cs" />
+    <Compile Include="Migrations\201703311156383_transactionDocuments.Designer.cs">
+      <DependentUpon>201703311156383_transactionDocuments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311200000_fuelDetails.cs" />
+    <Compile Include="Migrations\201703311200000_fuelDetails.Designer.cs">
+      <DependentUpon>201703311200000_fuelDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311405447_makeDoublenotrequired.cs" />
+    <Compile Include="Migrations\201703311405447_makeDoublenotrequired.Designer.cs">
+      <DependentUpon>201703311405447_makeDoublenotrequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311549123_GeneralSettings.cs" />
+    <Compile Include="Migrations\201703311549123_GeneralSettings.Designer.cs">
+      <DependentUpon>201703311549123_GeneralSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CRUDAction.cs" />
+    <Compile Include="Models\GeneralSettings.cs" />
+    <Compile Include="Models\Transactions.cs" />
     <Compile Include="Models\IMSDataContext.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Products.cs" />
@@ -281,6 +311,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703241124236_SupplierVehicles.resx">
       <DependentUpon>201703241124236_SupplierVehicles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703280958337_AddAvailableStockColumn.resx">
+      <DependentUpon>201703280958337_AddAvailableStockColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311152281_Transactions.resx">
+      <DependentUpon>201703311152281_Transactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311154276_transactionDetails.resx">
+      <DependentUpon>201703311154276_transactionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311156383_transactionDocuments.resx">
+      <DependentUpon>201703311156383_transactionDocuments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311200000_fuelDetails.resx">
+      <DependentUpon>201703311200000_fuelDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311405447_makeDoublenotrequired.resx">
+      <DependentUpon>201703311405447_makeDoublenotrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311549123_GeneralSettings.resx">
+      <DependentUpon>201703311549123_GeneralSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -44,6 +44,8 @@ namespace InventoryDataEntities.Models
         public long Id { get; set; }
         [DisplayName("Item ReoderLevel")]
         public double ReorderLevel { get; set; }
+        [DisplayName("Available Stock")]
+        public double AvailableStock { get; set; }
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
@@ -55,5 +57,14 @@ namespace InventoryDataEntities.Models
 
         public virtual Product ProdId { get; set; }
         public virtual Warehouse Warehouses { get; set; }
+    }
+
+    public class TankDetails
+    {
+        public long Id { get; set; }
+
+        public long WarehouseId { get; set; }
+
+
     }
 }

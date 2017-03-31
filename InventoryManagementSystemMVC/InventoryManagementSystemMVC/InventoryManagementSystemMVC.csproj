@@ -160,16 +160,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GeneralSettingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Controllers\ProductCategoriesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\UOMController.cs" />
     <Compile Include="Controllers\WarehousesController.cs" />
     <Compile Include="Controllers\WarehouseTypesController.cs" />
+    <Compile Include="Controllers\WizardController.cs" />
     <Compile Include="Flag.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +198,7 @@
     <Content Include="Content\css\jquery.dataTables.css" />
     <Content Include="Content\css\jquery.dataTables.min.css" />
     <Content Include="Content\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\css\wizard.css" />
     <Content Include="Content\datatables.extensions\AutoFill\css\dataTables.autoFill.css" />
     <Content Include="Content\datatables.extensions\AutoFill\css\dataTables.autoFill.min.css" />
     <Content Include="Content\datatables.extensions\AutoFill\images\filler.png" />
@@ -314,6 +318,7 @@
     <Content Include="Content\images\sort_both.png" />
     <Content Include="Content\images\sort_desc.png" />
     <Content Include="Content\images\sort_desc_disabled.png" />
+    <Content Include="Content\js\wizard.js" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -1301,6 +1306,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Roles\assign_roles.js" />
+    <Content Include="Scripts\transaction\transaction.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1376,6 +1382,14 @@
     <Content Include="Views\Suppliers\SupplierProducts.cshtml" />
     <Content Include="Views\Suppliers\Drivers.cshtml" />
     <Content Include="Views\Suppliers\Vehicles.cshtml" />
+    <Content Include="Views\Shared\_WizardLayout.cshtml" />
+    <Content Include="Views\Wizard\Index.cshtml" />
+    <Content Include="Views\Stock\Index.cshtml" />
+    <Content Include="Views\Stock\Create.cshtml" />
+    <Content Include="Views\Stock\basic_details.cshtml" />
+    <Content Include="Views\Stock\Fuel_details.cshtml" />
+    <Content Include="Views\Stock\Transactions.cshtml" />
+    <Content Include="Views\GeneralSettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

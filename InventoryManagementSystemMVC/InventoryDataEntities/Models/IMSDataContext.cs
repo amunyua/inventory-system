@@ -37,6 +37,11 @@ namespace InventoryDataEntities.Models
         public DbSet<SupplierProduct> SupplierProducts { get; set; }
         public DbSet<SupplierDriver> Drivers { get; set; }
         public DbSet<SupplierVehicle> Vehicles { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<TransactionDetails> TransctionDetails { get; set; }
+        public DbSet<TransactionDocuments> TransactionDocuments { get; set; }
+        public DbSet<FuelTransactionDetails> FuelTransactionDetails { get; set; }
+        public DbSet<GeneralSettings> GeneralSettings { get; set; }
 
 
 
