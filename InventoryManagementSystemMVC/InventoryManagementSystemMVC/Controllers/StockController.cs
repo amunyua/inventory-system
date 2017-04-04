@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,6 +12,7 @@ using InventoryDataEntities.Models;
 
 namespace InventoryManagementSystemMVC.Controllers
 {
+    [Authorize]
     public class StockController : Controller
     {
         private IMSDataEntities db = new IMSDataEntities();
@@ -23,20 +25,7 @@ namespace InventoryManagementSystemMVC.Controllers
             return View(warehouseProducts.ToList());
         }
 
-        // GET: Stock/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WarehouseProduct warehouseProduct = db.WarehouseProducts.Find(id);
-            if (warehouseProduct == null)
-            {
-                return HttpNotFound();
-            }
-            return View(warehouseProduct);
-        }
+       
 
         // GET: Stock/Create
         public ActionResult Create()
@@ -51,7 +40,7 @@ namespace InventoryManagementSystemMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection request )
+        public ActionResult Create(FormCollection request)
         {
             //here we do validation first
             Validate("TransactionType,TransactionCategory,SupplierId,WarehouseId,ProductId", request);
@@ -71,6 +60,7 @@ namespace InventoryManagementSystemMVC.Controllers
                 TransactionDate = DateTime.Now,
                 SupplierId = Int64.Parse(request["SupplierId"]),
             };
+
             switch (request["TransactionType"])
             {
                 case "PURCHASE":
@@ -80,6 +70,7 @@ namespace InventoryManagementSystemMVC.Controllers
                         {
                             transaction.DriverId = Int64.Parse(request["DriverId"]);
                             transaction.VehicleId = Int64.Parse(request["VehicleId"]);
+                            db.Transactions.Add(transaction);
                             if (Validate("ExpectedQuantity,ActualQuantityAvailable,DipBeforeOffload,DipAfterOffload,AmountSoldDuringOffload,AmountPerLiter", request))
                             {
                                 db.FuelTransactionDetails.Add(new FuelTransactionDetails()
@@ -98,14 +89,45 @@ namespace InventoryManagementSystemMVC.Controllers
                     break;
 
             }
-            db.Transactions.Add(transaction);
+            //get available stock level and add to the actual amount
+            
             db.TransctionDetails.Add(new TransactionDetails()
             {
                 TransactionId = transaction.Id,
                 ProductId = Int64.Parse(request["ProductId"]),
                 WarehouseId = Int64.Parse(request["WarehouseId"]),
-//                Quantity = double.Parse(request["ActualQuantityAvailable"])
+                Quantity = double.Parse(request["ActualQuantityAvailable"])
             });
+
+            //upload the documents
+            try
+            {
+                if (Request.Files.Count > 0)
+                {
+                    foreach (string filename in Request.Files)
+                    {
+////                        HttpPostedFile file = Request.Files[filename];
+//                        if (file != null && file.ContentLength > 0)
+//                        {
+//                            string pathForSaving = Server.MapPath("~/UploadedDocuments");
+//                            var fileName = Path.GetFileName(file.FileName);
+////                            var path = Path.Combine(Server.MapPath("~/UploadedDocuments"), fileName);
+////                            file.SaveAs(path);
+//                        }
+
+                        
+                    }
+                }
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                
+            }  
+
+
+
+
             if (Errors.Any())
             {
                 ViewBag.Errors = Errors;
@@ -113,8 +135,8 @@ namespace InventoryManagementSystemMVC.Controllers
             }
             else
             {
-                db.SaveChanges();
-                return RedirectToAction("Index");
+//                db.SaveChanges();
+                return RedirectToAction("ViewReceipt",new {id = transaction.Id});
             }
             
 
@@ -128,6 +150,7 @@ namespace InventoryManagementSystemMVC.Controllers
         {
             var warehouseId = Int64.Parse(Request.Form["warehouseId"]);
             var data = db.WarehouseProducts.Where(x => x.WarehouseId == warehouseId);
+//           
             return Json(data);
         }
 
@@ -176,6 +199,32 @@ namespace InventoryManagementSystemMVC.Controllers
             return View(transactions);
         }
 
+        // GET: Stock/receipt details/5
+        
+
+        public ActionResult ViewReceipt(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Transactions transaction = db.Transactions.Find(id);
+            if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            return View(transaction);
+        }
+
+        [HttpPost]
+        public JsonResult SupplierPrices()
+        {
+            var productId = Int64.Parse(Request.Form["productId"]);
+            var supplierId = Int64.Parse(Request.Form["supplierId"]);
+            var data = db.SupplierProducts.Where(x => x.SupplierId== supplierId && x.ProductId == productId);
+            //           
+            return Json(data);
+        }
       
         protected override void Dispose(bool disposing)
         {

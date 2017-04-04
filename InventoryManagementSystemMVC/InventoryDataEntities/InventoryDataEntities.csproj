@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201703311549123_GeneralSettings.Designer.cs">
       <DependentUpon>201703311549123_GeneralSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704040814287_foreignkey.cs" />
+    <Compile Include="Migrations\201704040814287_foreignkey.Designer.cs">
+      <DependentUpon>201704040814287_foreignkey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CRUDAction.cs" />
     <Compile Include="Models\GeneralSettings.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703311549123_GeneralSettings.resx">
       <DependentUpon>201703311549123_GeneralSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704040814287_foreignkey.resx">
+      <DependentUpon>201704040814287_foreignkey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

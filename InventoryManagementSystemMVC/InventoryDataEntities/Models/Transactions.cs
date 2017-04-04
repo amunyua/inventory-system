@@ -80,7 +80,7 @@ namespace InventoryDataEntities.Models
     {
         [Key]
         public long Id { get; set; }
-
+        [ForeignKey("Transaction")]
         public long TransactionId { get; set; }
         public double ExpectedQuantity { get; set; }
         public double DipBeforeOffload { get; set; }
@@ -88,6 +88,8 @@ namespace InventoryDataEntities.Models
         public double AmountSoldDuringOffload { get; set; }
         public double ActualQuantityAvailable { get; set; }
         public double PricePerLiter { get; set; }
+        public virtual Transactions Transaction { get; set; }
+
     }
     
 }

@@ -3,15 +3,16 @@
     var input = $(this),
         numFiles = input.get(0).files ? input.get(0).files.length : 1,
         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    input.closest($('.message')).text(label);
+    input.parent('.input-label').find('.message').text(label);
     input.trigger('fileselect', [numFiles, label]);
+//    console.log(input.parent('.input-label').find('.message'));
 });
-$(document).ready(function () {
-    $(':file').on('fileselect', function (event, numFiles, label) {
-        console.log(numFiles);
-        console.log(label);
-    });
-});
+//$(document).ready(function () {
+//    $(':file').on('fileselect', function (event, numFiles, label) {
+//        console.log(numFiles);
+//        console.log(label);
+//    });
+//});
 
 $('#WarehouseId').on('change',
     function() {
@@ -38,7 +39,8 @@ $('#WarehouseId').on('change',
                         for (i = 0; i < data.length; i++) {
                             html = '<option value="' + data[i]["Id"] + '">'+ data[i]["ProdId"]["Product_Name"]+'</option>';
                         }
-                        $('#ProductId').html(html);
+                        $('#ProductId').html(html).trigger("change");
+
                         $('#available-amount').val(data[0]["AvailableStock"]);
                         $('#MaximumCapacity').val(data[0]["Warehouses"]["MaximumCapacity"]);
 
@@ -130,4 +132,35 @@ $('#submit').on('click',
     function() {
         alert('clicked');
     });
+
+$('#ProductId').on('change', function () {
+    $('#price-per-liter').val('');
+    var productId = $(this).val();
+    var supplierId = $('#supplier').val();
+    if (supplierId == '') {
+        $('#ProductId').val('');
+        alert('You must choose a supplier first');
+    } else {
+        if (productId != '') {
+            var data = {
+                'productId': productId,
+                'supplierId': supplierId
+            }
+            $.ajax({
+                url: "/Stock/SupplierPrices",
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function(data) {
+                    if (data.length > 0) {
+                        $('#price-per-liter').val(data[0]["Price"]);
+                    } else {
+                        alert("Item does not belong to supplier, please attach it first");
+                        $('#ProductId').val('');
+                    }
+                }
+            });
+        }
+    }
+});
 

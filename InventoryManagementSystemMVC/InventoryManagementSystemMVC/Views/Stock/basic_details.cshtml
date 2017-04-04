@@ -12,8 +12,8 @@
                 <input type="text" id="invoice-ref" name="InvoiceRefNumber" class="form-control" />
             </div>
             <div class=" col-sm-6">
-                <label class="btn btn-default btn-file btn-block">
-                    <span class="message">Upload doc</span> <input type="file" hidden>
+                <label class="btn btn-default btn-file btn-block input-label">
+                    <span class="message">Upload doc</span><input type="file" name="Invoice" hidden> 
                 </label>
             </div>
            
@@ -29,8 +29,8 @@
                 <input type="text" name="DeliveryNoteRefNo" id="delivery-note-ref" class="form-control" />
             </div>
             <div class=" col-sm-6">
-                <label class="btn btn-default btn-file btn-block">
-                    <span class="message">Upload doc</span> <input type="file" hidden>
+                <label class="btn btn-default btn-file btn-block input-label">
+                    <span class="message">Upload doc</span> <input type="file" name="Delivery" hidden>
                 </label>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <label for="transaction-category" class="col-sm-2 control-label">Transaction Category</label>
         <div class="col-sm-10">
             <div class="col-sm-12">
-                <select name="TransactionCategory" id="transaction-category" class="form-control">
+                <select name="TransactionCategory" id="transaction-category" class="form-control" required="required">
                     <option value="">--Select Category--</option>
                     <option value="fuel">Fuel Purchase</option>
                     <option value="others">Others</option>

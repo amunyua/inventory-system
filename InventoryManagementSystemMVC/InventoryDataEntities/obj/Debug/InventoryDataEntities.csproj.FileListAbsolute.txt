@@ -57,3 +57,4 @@ C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.fuelDetails.resources
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.makeDoublenotrequired.resources
 C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.GeneralSettings.resources
+C:\inventory-system\InventoryManagementSystemMVC\InventoryDataEntities\obj\Debug\InventoryDataEntities.Migrations.foreignkey.resources

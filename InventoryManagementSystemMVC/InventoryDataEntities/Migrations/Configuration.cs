@@ -100,7 +100,7 @@ namespace InventoryDataEntities.Migrations
             context.Menus.AddOrUpdate(m => m.MenuName, manageMenu);
 
             AssignRole(roleId, manageMenu.Id, systemSettingsId);
-            //            ChildMenu(context, "General Settings", "GeneralSettings", "Index", 2, systemSettingsId, roleId);
+            ChildMenu(context, "General Settings", "GeneralSettings", "Index", 2, systemSettingsId, roleId);
 
 
 

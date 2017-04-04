@@ -10,6 +10,7 @@ using InventoryDataEntities.Models;
 
 namespace InventoryManagementSystemMVC.Controllers
 {
+    [Authorize]
     public class GeneralSettingsController : Controller
     {
         private IMSDataEntities db = new IMSDataEntities();
@@ -20,26 +21,7 @@ namespace InventoryManagementSystemMVC.Controllers
             return View(db.GeneralSettings.ToList());
         }
 
-        // GET: GeneralSettings/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            GeneralSettings generalSettings = db.GeneralSettings.Find(id);
-            if (generalSettings == null)
-            {
-                return HttpNotFound();
-            }
-            return View(generalSettings);
-        }
-
-        // GET: GeneralSettings/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+    
 
         // POST: GeneralSettings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
